@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripAdvisor Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts.js" defer></script>
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
+</head>
+<body>
+    <div class="logo">TripAdvisor</div>
+
+    <!-- Sign-up Form -->
+    <form id="signup-form" class="main">
+        <div class="header">SignUp</div> 
+        <input id="username" name="username" type="text" placeholder="Username" class="input" required>
+        <input id="password" name="password" type="password" placeholder="Password" class="input" required>
+        <input id="cpassword" name="cpassword" type="password" placeholder="Confirm Password" class="input" required><br>
+        <button type="submit" class="btn">Sign-up</button>
+
+        <div class="fb">
+            Or continue with
+            <button type="button" class="btn-facebook" onclick="loginWithFacebook()">Login with Facebook</button>
+        </div>
+        <hr>
+        <div class="link">Already have an account? <a href="me.html">Login here</a></div>
+    </form>
+
+    <!-- Facebook SDK Initialization -->
+    <script>
+        // Initialize Facebook SDK (no changes needed)
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '8898594430176438', // Replace with your Facebook App ID
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v12.0'
+            });
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        // Login with Facebook and redirect to homepage on success
+        function loginWithFacebook() {
+            FB.login(function(response) {
+                if (response.authResponse) {
+                    // Successful login, redirect to homepage
+                    alert("Login successful! Redirecting to homepage...");
+                    window.location.href = 'home.html';  // Redirect to the homepage
+                } else {
+                    // Login failed
+                    alert('User cancelled login or did not fully authorize.');
+                }
+            }, { scope: 'public_profile,email' }); // Request permissions if necessary
+        }
+
+        // AJAX form submission using Fetch API
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+
+            // Collect form data
+            const formData = {
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value,
+                cpassword: document.getElementById('cpassword').value
+            };
+
+            // Check if passwords match
+            if (formData.password !== formData.cpassword) {
+                alert('Passwords do not match.');
+                return;
+            }
+
+            // Send the form data to Node.js server using a POST request
+            fetch('http://localhost:3000/index.html', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.text())  // Using text() because the server responds with plain text
+            .then(data => {
+                if (data === 'User created successfully') {
+                    alert('Signup successful! Redirecting to login...');
+                    window.location.href = 'me.html'; // Redirect to login page
+                } else {
+                    alert('Error: ' + data); // Display error message
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while signing up.');
+            });
+        });
+    </script>
+
+</body>
+</html>

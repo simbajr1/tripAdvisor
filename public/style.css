@@ -1,0 +1,82 @@
+.logo{
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    color: rgb(151, 224, 253);
+    margin-left: 10px;
+}
+.main{
+    width: 60%;
+    height: 400px;
+    margin-left: 20%;
+    background: linear-gradient(45deg,rgba(140, 228, 255, 0.281),rgba(255, 255, 255, 0.301));
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    padding-top: 20px;
+    margin-top: 50px;
+    text-align: center;
+}
+body{
+    background-image: url("wallpaper.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.header{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    color: rgb(0, 0, 0);
+}
+.input{
+    width: 50%;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.116);
+    border-top: 0px solid ;
+    border-left: 0px solid;
+    border-right: 0px solid ;
+    border-bottom: 3px solid black;
+    margin-top: 30px;
+    text-align: center;
+    font-size: 18px;
+    color: rgb(1, 32, 59);
+}
+.btn{
+    width: 30%;
+    height: 40px;
+    background: linear-gradient(45deg,rgb(94, 29, 119),blue);
+    border-radius: 5px;
+    border: none;
+    margin-top: 30px;
+    font-weight: 900;
+    color: aliceblue;
+}
+.fb{
+    margin-top: 20px;
+}
+.name{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    color: rgb(230, 243, 248);
+    margin-left: 20px;
+}
+.inp2{
+    width: 60%;
+    height: 40px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: none;
+    background-color: wheat;
+    margin-block: 60px;
+    text-align: center;
+}
+.btn2{
+    width: 20%;
+    height: 40px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: none;
+    background-color: rgb(118, 205, 255);
+    margin-left: -1px;
+}
